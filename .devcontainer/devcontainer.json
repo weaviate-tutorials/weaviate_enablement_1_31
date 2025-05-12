@@ -1,13 +1,30 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.0/containers/python-3
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-existing-docker-compose
 {
   "name": "Weaviate Python Playground",
-  "image": "python:3.11-slim-bullseye",
-  // Configure tool-specific properties.
+
+	// Update the 'dockerComposeFile' list if you have more compose files or use different names.
+	// The .devcontainer/docker-compose.yml file contains any overrides you need/want to make.
+	"dockerComposeFile": "../docker-compose.yml",
+
+	// The 'service' property is the name of the service for the container that VS Code should
+	// use. Update this value and .devcontainer/docker-compose.yml to the real service name.
+	"service": "app",
+
+	// The optional 'workspaceFolder' property is the path VS Code should open by default when
+	// connected. This is typically a file mount in .devcontainer/docker-compose.yml
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+  // Add a feature to make docker-in-docker available
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
   "customizations": {
-    // Configure properties specific to VS Code.
     "vscode": {
-      // Set *default* container specific settings.json values on container create.
       "settings": {
         "python.defaultInterpreterPath": "/usr/local/bin/python",
         "files.exclude": {
@@ -15,16 +32,18 @@
         },
         "python.packageManager": "uv"
       },
-
       "extensions": [
         "ms-python.black-formatter",
         "ms-python.python",
-        "ms-toolsai.jupyter"
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker"  // Added Docker extension
       ]
     }
   },
-  // Install uv and use it to install requirements
-  "postCreateCommand": "pip install --no-cache-dir uv && uv venv && uv pip install -r requirements.txt",
-  "postStartCommand": "sed -i '/activate/d' ~/.bashrc && echo 'if [ -z \"$VIRTUAL_ENV\" ]; then source $(find /workspaces/weaviate_devcontainer_py -name activate | head -n 1); fi' >> ~/.bashrc",
-  "shutdownAction": "stopContainer"
+
+  "postCreateCommand": "pip install --no-cache-dir uv && uv venv && uv pip install -r requirements.txt && if [ -f run-weaviate.sh ]; then chmod +x run-weaviate.sh; fi",
+  "postStartCommand": "sed -i '/activate/d' ~/.bashrc && echo 'if [ -z \"$VIRTUAL_ENV\" ]; then source $(find /workspaces/${localWorkspaceFolderBasename} -name activate | head -n 1); fi' >> ~/.bashrc"
+
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "devcontainer"
 }
