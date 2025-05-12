@@ -42,8 +42,12 @@
   },
 
   "postCreateCommand": "pip install --no-cache-dir uv && uv venv && uv pip install -r requirements.txt && if [ -f run-weaviate.sh ]; then chmod +x run-weaviate.sh; fi",
-  "postStartCommand": "sed -i '/activate/d' ~/.bashrc && echo 'if [ -z \"$VIRTUAL_ENV\" ]; then source $(find /workspaces/${localWorkspaceFolderBasename} -name activate | head -n 1); fi' >> ~/.bashrc"
 
-	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "devcontainer"
+  "initializeCommand": "mkdir -p .devcontainer/scripts",
+
+  "postStartCommand": "bash .devcontainer/scripts/setup-venv.sh",
+
+  "containerEnv": {
+    "WORKSPACE_FOLDER": "/workspaces/${localWorkspaceFolderBasename}"
+  }
 }
