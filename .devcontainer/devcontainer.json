@@ -25,10 +25,6 @@
   },
   // Install uv and use it to install requirements
   "postCreateCommand": "pip install --no-cache-dir uv && uv venv && uv pip install -r requirements.txt",
-
-  // Ensure new terminals activate the virtual environment
-  "postAttachCommand": "echo 'source .venv/bin/activate' >> ~/.bashrc",
-
-  // Comment the next line if you want to keep your containers running after VS Code shuts down.
+  "postStartCommand": "sed -i '/activate/d' ~/.bashrc && echo 'if [ -z \"$VIRTUAL_ENV\" ]; then source $(find /workspaces/weaviate_devcontainer_py -name activate | head -n 1); fi' >> ~/.bashrc",
   "shutdownAction": "stopContainer"
 }
