@@ -1,0 +1,34 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.245.0/containers/python-3
+{
+  "name": "Weaviate Python Playground",
+  "image": "python:3.11-slim-bullseye",
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "files.exclude": {
+          "__pycache__": true
+        },
+        "python.packageManager": "uv"
+      },
+
+      "extensions": [
+        "ms-python.black-formatter",
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ]
+    }
+  },
+  // Install uv and use it to install requirements
+  "postCreateCommand": "pip install --no-cache-dir uv && uv venv && uv pip install -r requirements.txt",
+
+  // Ensure new terminals activate the virtual environment
+  "postAttachCommand": "echo 'source .venv/bin/activate' >> ~/.bashrc",
+
+  // Comment the next line if you want to keep your containers running after VS Code shuts down.
+  "shutdownAction": "stopContainer"
+}
