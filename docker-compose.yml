@@ -38,6 +38,7 @@ services:
       CLUSTER_DATA_BIND_PORT: '7101'
       RAFT_JOIN: 'node1,node2,node3'
       RAFT_BOOTSTRAP_EXPECT: 3
+      EXPERIMENTAL_BACKWARDS_COMPATIBLE_NAMED_VECTORS: "true"
     volumes:
     - weaviate-data1:/var/lib/weaviate
     networks:
@@ -72,6 +73,7 @@ services:
       CLUSTER_JOIN: 'weaviate-node-1:7100'
       RAFT_JOIN: 'node1,node2,node3'
       RAFT_BOOTSTRAP_EXPECT: 3
+      EXPERIMENTAL_BACKWARDS_COMPATIBLE_NAMED_VECTORS: "true"
     volumes:
     - weaviate-data2:/var/lib/weaviate
     networks:
@@ -107,6 +109,7 @@ services:
       CLUSTER_JOIN: 'weaviate-node-1:7100'
       RAFT_JOIN: 'node1,node2,node3'
       RAFT_BOOTSTRAP_EXPECT: 3
+      EXPERIMENTAL_BACKWARDS_COMPATIBLE_NAMED_VECTORS: "true"
     volumes:
     - weaviate-data3:/var/lib/weaviate
     networks:
