@@ -44,7 +44,7 @@ case "$1" in
     if $all_running; then
       echo -e "\n${GREEN}Weaviate cluster is fully operational!${NC}"
       echo -e "Primary node is available at ${GREEN}http://localhost:$PRIMARY_PORT${NC}"
-      echo -e "Additional nodes at http://localhost:8181 and http://localhost:8182"
+      echo -e "Additional nodes at http://localhost:8081 and http://localhost:8082"
     else
       echo -e "\n${RED}Some nodes failed to start. Check docker logs for details:${NC}"
       echo -e "  docker logs weaviate-node-1"
