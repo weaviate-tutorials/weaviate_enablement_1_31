@@ -1,4 +1,6 @@
+data
 temp.ipynb
+temp*.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

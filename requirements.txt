@@ -57,6 +57,7 @@ nbconvert==7.16.6
 nbformat==5.10.4
 nest-asyncio==1.6.0
 notebook-shim==0.2.4
+numpy==2.2.6
 overrides==7.7.0
 packaging==25.0
 pandocfilters==1.5.1
@@ -100,7 +101,7 @@ uri-template==1.3.0
 urllib3==2.4.0
 validators==0.34.0
 wcwidth==0.2.13
-weaviate-client @ git+https://github.com/weaviate/weaviate-python-client.git@3305004504cb907f2dae7dd0417c7e2e2dacde02
+weaviate-client @ git+https://github.com/weaviate/weaviate-python-client.git@014f0a3b1e49025f6cba9aa2e11c09b4cc989a66
 webcolors==24.11.1
 webencodings==0.5.1
 websocket-client==1.8.0
