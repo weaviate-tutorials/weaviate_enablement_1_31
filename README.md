@@ -1,3 +1,7 @@
+Note - this repository is archived.
+
+Please see https://github.com/weaviate-tutorials/weaviate-enablement-sessions for future sessions
+
 # Weaviate 1.31 Enablement session
 
 ## Key features
